@@ -10,7 +10,7 @@ from .models import Theater
 
 
 
-class TheaterAPIView(APIView):
+class ManageTheaterAPIView(APIView):
 
 	authentication_classes = [TokenAuthentication]
 	permission_classes =[IsAuthenticated]

@@ -8,6 +8,7 @@ class MovieQuerySet(models.query.QuerySet):
             Q(name__icontains=query)|
             Q(director__icontains=query)|
             Q(language__icontains=query)|
+            Q(genre__icontains=query)|
             Q(cast__icontains=query)
         )
         return self.filter(lookup).distinct()
@@ -40,9 +41,10 @@ class Movie(models.Model):
     cast              =     models.CharField(max_length=100)
     director          =     models.CharField(max_length=20)
     language          =     models.CharField(max_length=10,choices=lang_choice)
+    genre             =     models.CharField(max_length = 10,default='Drama')
     run_length        =     models.IntegerField(help_text='Enter run length in minutes')
     certificate       =     models.CharField(max_length=2,choices=rating_choice)
-    popularity_index  =     models.IntegerField(unique=True,null=True,blank=True)
+    popularity_index  =     models.IntegerField(null=True,blank=True)
     trailer           =     models.URLField(blank=True)    
     image             =     models.ImageField(null=True, blank=True)
     

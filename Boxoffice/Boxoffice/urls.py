@@ -27,8 +27,8 @@ urlpatterns = [
     path('login/',user_views.LoginView.as_view(),name='login'),
     path('logout/',user_views.LogoutView.as_view(),name='logout'),
     path('register/',user_views.CreateUserView.as_view(),name='register'),
-    path('theater/api/',theater_views.TheaterAPIView.as_view(),name='theater-api'),
-    path('movie/api/',movie_views.MovieAPIView.as_view(),name='movie-api'),
+    path('theater/api/',theater_views.ManageTheaterAPIView.as_view(),name='theater-api'),
+    path('movie/api/',movie_views.ManageMovieAPIView.as_view(),name='movie-api'),
     path('movie/search/api/',movie_views.SearchMovieAPIView.as_view(),name='movie-search-api'),
 ]
 
