@@ -27,8 +27,13 @@ urlpatterns = [
     path('login/',user_views.LoginView.as_view(),name='login'),
     path('logout/',user_views.LogoutView.as_view(),name='logout'),
     path('register/',user_views.CreateUserView.as_view(),name='register'),
+
     path('theater/api/',theater_views.ManageTheaterAPIView.as_view(),name='theater-api'),
+    path('theater/api/<int:id>/',theater_views.ManageTheaterDetailAPIView.as_view(),name='theater-detail-api'),
+    path('theater/api/<int:id>/shows/',theater_views.ManageShowAPIView.as_view(),name='theater-show-api'),
+
     path('movie/api/',movie_views.ManageMovieAPIView.as_view(),name='movie-api'),
+    path('movie/api/<int:id>/',movie_views.ManageMovieDetailAPIView.as_view(),name='movie-detail-api'),
     path('movie/search/api/',movie_views.SearchMovieAPIView.as_view(),name='movie-search-api'),
 ]
 

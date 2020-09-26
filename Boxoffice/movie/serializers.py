@@ -10,7 +10,7 @@ class MovieSerializer(serializers.ModelSerializer):
 	class Meta:
 
 		model = Movie
-		fields = ['name','cast','director','language','run_length','certificate','popularity_index','trailer','image']
+		fields = ['id','name','cast','director','language','run_length','certificate','popularity_index','trailer','image']
 
 class SearchMovieSerializer(serializers.Serializer):
     query = serializers.CharField()

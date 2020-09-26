@@ -26,6 +26,24 @@ class ManageMovieAPIView(APIView):
 			return Response(serializer.data, status=201)
 		return Response(serializer.errors, status=400)
 
+class ManageMovieDetailAPIView(APIView):
+
+	authentication_classes = [TokenAuthentication]
+	permission_classes =[IsAuthenticated]
+
+	def get_object(self,id):
+
+		try:
+			return Movie.objects.get(id=id)
+
+		except MovieDoesNotExist as e:
+			return Response({'error':'Given Question object not found'},status=400)
+
+	def get(self, request,id):
+		movie = self.get_object(id=id)
+		serailizer = MovieSerializer(movie)
+		return Response(serailizer.data, status=200)
+
 class SearchMovieAPIView(APIView):
 
 	authentication_classes = [TokenAuthentication]
