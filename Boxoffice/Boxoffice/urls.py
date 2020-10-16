@@ -18,6 +18,7 @@ from django.urls import path
 from user import views as user_views
 from theater import views as theater_views
 from movie import views as movie_views
+from booking import views as booking_views
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,6 +32,8 @@ urlpatterns = [
     path('theater/api/',theater_views.ManageTheaterAPIView.as_view(),name='theater-api'),
     path('theater/api/<int:id>/',theater_views.ManageTheaterDetailAPIView.as_view(),name='theater-detail-api'),
     path('theater/api/<int:id>/shows/',theater_views.ManageShowAPIView.as_view(),name='theater-show-api'),
+    path('theater/api/<int:id>/shows/<int:pk>/seat/',booking_views.SeatView.as_view(),name='theater-show-seat-api'),
+    path('theater/api/<int:id>/shows/<int:pk>/booking/',booking_views.BookingView.as_view(),name='theater-show-booking-api'),
 
     path('movie/api/',movie_views.ManageMovieAPIView.as_view(),name='movie-api'),
     path('movie/api/<int:id>/',movie_views.ManageMovieDetailAPIView.as_view(),name='movie-detail-api'),

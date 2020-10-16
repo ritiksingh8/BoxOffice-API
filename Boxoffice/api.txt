@@ -1,0 +1,28 @@
+'theater/api/<int:id>/shows/<int:pk>/seat/'
+[
+    {
+        "id": 3,
+        "seat_no": "C1",
+        "seat_id": "2",
+        "seat_code": "C02",
+        "seat_row": "C",
+        "show": 1
+    },
+    {
+        "id": 5,
+        "seat_no": "se",
+        "seat_id": "se",
+        "seat_code": "se",
+        "seat_row": "se",
+        "show": 1
+    }
+]
+
+'theater/api/<int:id>/shows/<int:pk>/booking/'
+
+payment_choice = (
+        ('Debit Card', 'Debit Card'),
+        ('Credit Card', 'Credit Card'),
+        ('Net Banking', 'Net Banking'),
+        ('Wallet', 'Wallet'),
+    )

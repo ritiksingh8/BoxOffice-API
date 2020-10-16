@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from theater.models import Show
 from django.urls import reverse
 from django.db.models.signals import post_delete
+from django.utils import timezone
 User = get_user_model()
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Booking(models.Model):
         ('Net Banking', 'Net Banking'),
         ('Wallet', 'Wallet'),
     )
-    timestamp         =     models.DateTimeField('%Y-%m-%d %H:%M:%S')
+    timestamp         =     models.DateTimeField('%Y-%m-%d %H:%M:%S',default = timezone.now())
     payment_type      =     models.CharField(max_length=11, choices=payment_choice)
     # payment_type      =     models.CharField(max_length=11)
     paid_amount       =     models.DecimalField(max_digits=8, decimal_places=2)
@@ -28,21 +29,24 @@ class Booking(models.Model):
     #def get_absolute_url(self):
 
 class Seat(models.Model):
-    seat_choice = (
-        ('', 'Select'),
-        ('Silver', 'Silver'),
-        ('Gold', 'Gold'),
-        ('Platinum', 'Platinum'),
-    )
-    no              =       models.CharField(max_length=3)
-    seat_type       =       models.CharField(max_length=8, choices=seat_choice, blank=False)
+    # seat_choice = (
+    #     ('', 'Select'),
+    #     ('Silver', 'Silver'),
+    #     ('Gold', 'Gold'),
+    #     ('Platinum', 'Platinum'),
+    # )
+    seat_no         =       models.CharField(max_length=3)
+    seat_id         =       models.CharField(max_length=4,default='')
+    seat_code       =       models.CharField(max_length=4,default='')
+    seat_row        =       models.CharField(max_length=4,default='')
+    # seat_type       =       models.CharField(max_length=8, choices=seat_choice, blank=False)
     show            =       models.ForeignKey(Show, on_delete=models.CASCADE)
 
-    class Meta:
-        unique_together = ('no', 'show')
+    # class Meta:
+    #     unique_together = ('seat_no', 'show')
 
     def __str__(self):
-        return self.no + str(self.show)
+        return self.seat_no + str(self.show)
 
 
 class BookedSeat(models.Model):
