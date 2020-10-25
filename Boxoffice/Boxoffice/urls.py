@@ -40,7 +40,7 @@ urlpatterns = [
     path('movie/api/<int:id>/theaters/',movie_views.ManageMovieTheaterDetailAPIView.as_view(),name='movie-detail-theater-api'),
     path('movie/search/api/',movie_views.SearchMovieAPIView.as_view(),name='movie-search-api'),
 
-    path('seat/<int:pk>/user/<int:id>/email/',booking_views.BookingEmailView.as_view(),name='theater-show-booking-email-api'),    
+    path('seat/<int:pk>/user/<str:username>/email/',booking_views.BookingEmailView.as_view(),name='theater-show-booking-email-api'),    
 
 ]
 

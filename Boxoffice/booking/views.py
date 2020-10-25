@@ -31,9 +31,9 @@ class BookingEmailView(GenericAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes =[IsAuthenticated]
     
-    def get(self, request,id,pk):
+    def get(self, request,pk,username):
 
-    	user_obj = User.objects.get(id=id)
+    	user_obj = User.objects.filter(username=username).first()
     	seat_obj = Seat.objects.filter(seat_id=pk).first()
     	bookedseat_obj = BookedSeat.objects.filter(seat=seat_obj).filter(booking__paid_by=user_obj).first()
 
