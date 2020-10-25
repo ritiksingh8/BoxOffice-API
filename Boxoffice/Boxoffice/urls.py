@@ -37,7 +37,11 @@ urlpatterns = [
 
     path('movie/api/',movie_views.ManageMovieAPIView.as_view(),name='movie-api'),
     path('movie/api/<int:id>/',movie_views.ManageMovieDetailAPIView.as_view(),name='movie-detail-api'),
+    path('movie/api/<int:id>/theaters/',movie_views.ManageMovieTheaterDetailAPIView.as_view(),name='movie-detail-theater-api'),
     path('movie/search/api/',movie_views.SearchMovieAPIView.as_view(),name='movie-search-api'),
+
+    # path('shows/<int:pk>/user/<int:id>/email/',booking_views.BookingEmailView.as_view(),name='theater-show-booking-email-api'),    
+
 ]
 
 if settings.DEBUG:

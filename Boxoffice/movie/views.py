@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .serializers import MovieSerializer, SearchMovieSerializer
+from theater.serializers import TheaterSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .models import Movie
+from theater.models import Show
 # Create your views here.
 
 
@@ -42,6 +44,26 @@ class ManageMovieDetailAPIView(APIView):
 	def get(self, request,id):
 		movie = self.get_object(id=id)
 		serailizer = MovieSerializer(movie)
+		return Response(serailizer.data, status=200)
+
+class ManageMovieTheaterDetailAPIView(APIView):
+
+	authentication_classes = [TokenAuthentication]
+	permission_classes =[IsAuthenticated]
+
+	def get_object(self,id):
+
+		try:
+			return Movie.objects.get(id=id)
+
+		except MovieDoesNotExist as e:
+			return Response({'error':'Given Question object not found'},status=400)
+
+	def get(self, request,id):
+		movie = self.get_object(id=id)
+		shows = Show.objects.filter(movie=movie)
+		theaters = [show.theater for show in shows]
+		serailizer = TheaterSerializer(theaters,many=True)
 		return Response(serailizer.data, status=200)
 
 class SearchMovieAPIView(APIView):

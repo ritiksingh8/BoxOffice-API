@@ -22,6 +22,20 @@ class BookingView(GenericAPIView):
         booked_seat_obj = serializer.validated_data["booked_seat_obj"]
         return Response({"status": 'True' }, status=200)
 
+# class BookingEmailView(GenericAPIView):
+#     serializer_class = BookingSerializer
+
+#     authentication_classes = [TokenAuthentication]
+#     permission_classes =[IsAuthenticated]
+    
+#     def get(self, request,id,pk):
+#     	seat_obj = Seat.objects.get
+#     	booking = Booking.objects.filter()
+#         serializer = BookingSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         booked_seat_obj = serializer.validated_data["booked_seat_obj"]
+#         return Response({"status": 'True' }, status=200)
+
 class SeatView(APIView):
 	authentication_classes = [TokenAuthentication]
 	permission_classes =[IsAuthenticated]
@@ -39,3 +53,5 @@ class SeatView(APIView):
 		seats = Seat.objects.filter(show=show)
 		serailizer = SeatSerializer(seats,many=True)
 		return Response(serailizer.data, status=200)
+
+
