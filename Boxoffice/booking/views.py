@@ -34,7 +34,7 @@ class BookingEmailView(GenericAPIView):
     def get(self, request,pk,username):
 
     	user_obj = User.objects.filter(username=username).first()
-    	seat_obj = Seat.objects.filter(seat_id=pk).first()
+    	seat_obj = Seat.objects.filter(seat_code=pk).first()
     	bookedseat_obj = BookedSeat.objects.filter(seat=seat_obj).filter(booking__paid_by=user_obj).first()
 
     	email=user_obj.email
